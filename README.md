@@ -4,6 +4,7 @@ This is the APCSP project by Sabrina Lund and Chris Soderquist
 
 # Goals and Specification
 
+Tasks that are assigned
 [Tasks](./Outline.md)
 
 Goal is to create a DDR like rhythm game where two players can concurrently use the same keyboard to compete against eachother.

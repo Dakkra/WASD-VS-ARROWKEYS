@@ -1,6 +1,21 @@
+
 body{
   background-color: #000000;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
+  font-size: 1cm;
+  color: #AAAAAA;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  width: 50%;
+  background-color: #777777;
+}
+
+#copyright {
+  font-size: .5cm;
+  color: #777777;
 }

@@ -12,13 +12,11 @@ function draw() {
   graphics.save();
   //Animation stuff
   time = new Date();
-  // graphics.rotate(-90 * (Math.PI/180));
-  graphics.strokeStyle = "#FF0000";
-  graphics.lineWidth = 5;
+  graphics.strokeStyle = "#888888";
+  graphics.lineWidth = 1;
   graphics.beginPath();
-  graphics.arc(250, 250, 100, 0, (2*Math.PI) * (time.getMilliseconds()/1000));
+  graphics.arc(250, 250, 100, (.5*Math.PI), (2*Math.PI) * (time.getMilliseconds()/1000));
   graphics.stroke();
-  // graphics.rotate(90 * (Math.PI/180));
 
   //Call update to render
   window.requestAnimationFrame(draw);

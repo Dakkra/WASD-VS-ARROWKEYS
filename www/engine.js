@@ -13,18 +13,22 @@ function loadingRenderer() {
     //Save default state for fallback
     graphics.save();
     //Animation stuff
-    time = new Date();
+    var time = new Date();
     graphics.strokeStyle = "#888888";
     graphics.lineWidth = 1;
     graphics.beginPath();
     graphics.arc(250, 250, 100, (.5 * Math.PI), (2 * Math.PI) * (time.getMilliseconds() / 1000));
     graphics.stroke();
+    //Draw loading text
+    graphics.fillStyle = "#888888";
+    graphics.font = "30px Arial";
+    graphics.fillText("Loading...", 185, 260);
 
     //Call update to render
     window.requestAnimationFrame(drawFunction);
 }
 
-function gameRenderer() {
+function menuRenderer() {
     //Begin procedural composition
     //Clear the context
     graphics.clearRect(0, 0, 500, 500);
@@ -34,7 +38,7 @@ function gameRenderer() {
     //Save default state for fallback
     graphics.save();
     //Animation stuff
-    time = new Date();
+    var time = new Date();
     graphics.strokeStyle = "#888888";
     graphics.lineWidth = 1;
     graphics.beginPath();
@@ -45,8 +49,28 @@ function gameRenderer() {
     window.requestAnimationFrame(drawFunction);
 }
 
+//Stage for actual gameplay with users
+function stageRenderer() {
+  //Clear graphics context
+  graphics.clearRect(0, 0, 500, 500);
+  //Draw background
+  graphics.fillStyle = "#0a0720";
+  graphics.fillRect(0, 0, 500, 500);
+  //Get time for time-based calculations
+  var time = new Date();
+  //Draw virtical split line
+  graphics.strokeStyle = "#000000";
+  graphics.lineWidth = 2;
+  graphics.beginPath();
+  graphics.moveTo(250, 0);
+  graphics.lineTo(250, 500);
+  graphics.stroke();
+
+  window.requestAnimationFrame(drawFunction);
+}
+
 function changeRenderer() {
-    drawFunction = gameRenderer;
+    drawFunction = stageRenderer;
 }
 
 //Start animation

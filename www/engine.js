@@ -29,7 +29,7 @@ function gameRenderer() {
     //Clear the context
     graphics.clearRect(0, 0, 500, 500);
     //Paint black background
-    graphics.fillStyle = "#0a1431";
+    graphics.fillStyle = "#0a0720";
     graphics.fillRect(0, 0, 500, 500);
     //Save default state for fallback
     graphics.save();

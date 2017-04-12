@@ -1,7 +1,7 @@
 var canvas = document.getElementById('canvas');
 var graphics = canvas.getContext("2d");
-var testTimer = window.setTimeout(changeRenderer, 1000 * 5);
 var drawFunction = loadingRenderer;
+var ready = false;
 
 function loadingRenderer() {
     //Begin procedural composition
@@ -26,6 +26,11 @@ function loadingRenderer() {
 
     //Call update to render
     window.requestAnimationFrame(drawFunction);
+
+    //Check if ready to display menu
+    if (ready) {
+      drawFunction = menuRenderer;
+    }
 }
 
 function menuRenderer() {
@@ -75,9 +80,30 @@ function stageRenderer() {
   window.requestAnimationFrame(drawFunction);
 }
 
-function changeRenderer() {
-    drawFunction = menuRenderer;
+//keyboard input handle for the menu
+function menuKeyHandler(event) {
+  if (ready) {
+    switch (event.keyCode) {
+      //Space key
+      case 32: {
+        drawFunction = stageRenderer;
+        break;
+      }
+      //Enter key
+      case 13: {
+        drawFunction = stageRenderer;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
 }
 
 //Start animation
 window.requestAnimationFrame(drawFunction);
+//Assign keyListener
+document.addEventListener("keydown", menuKeyHandler, false);
+//Set This should be the last thing to happen
+ready = true;

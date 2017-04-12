@@ -2,6 +2,8 @@ var canvas = document.getElementById('canvas');
 var graphics = canvas.getContext("2d");
 var drawFunction = loadingRenderer;
 var ready = false;
+//Assign soundIDs
+var selectionSoundID = "Select";
 
 function loadingRenderer() {
     //Begin procedural composition
@@ -86,12 +88,12 @@ function menuKeyHandler(event) {
     switch (event.keyCode) {
       //Space key
       case 32: {
-        drawFunction = stageRenderer;
+        startGame();
         break;
       }
       //Enter key
       case 13: {
-        drawFunction = stageRenderer;
+        startGame();
         break;
       }
       default: {
@@ -101,6 +103,17 @@ function menuKeyHandler(event) {
   }
 }
 
+function startGame() {
+  drawFunction = stageRenderer;
+  createjs.Sound.play(selectionSoundID);
+}
+
+function initialize() {
+  createjs.Sound.registerSound("audio/sounds/select.wav", selectionSoundID);
+}
+
+//Initialize the web application
+initialize();
 //Start animation
 window.requestAnimationFrame(drawFunction);
 //Assign keyListener

@@ -14,7 +14,9 @@ One user will use the WASD keys while the other will use the Arrow Keys.
 Will be implements in a JS Canvas
 
 # License
-//TODO write the license
+See [LICENSE](./LICENSE)
+
+This project utilizes the CreateJS SoundJS library which is copyright respectively.
 
 # Credits
  - Sabrina Lund

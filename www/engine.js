@@ -1,6 +1,8 @@
 var canvas = document.getElementById('canvas');
 var graphics = canvas.getContext("2d");
 var drawFunction = loadingRenderer;
+var inactiveArrowImage;
+var activeArrowImage;
 var ready = false;
 //Assign soundIDs
 var selectionSoundID = "Select";
@@ -78,6 +80,36 @@ function stageRenderer() {
   graphics.moveTo(250, 0);
   graphics.lineTo(250, 500);
   graphics.stroke();
+  //Draw horizontal line guard
+  graphics.beginPath();
+  graphics.moveTo(0, 450);
+  graphics.lineTo(500, 450);
+  graphics.stroke();
+
+  //Arrows at bottom
+  //Normal up arrow
+  graphics.drawImage(inactiveArrowImage, 10, 460);
+
+  //Upside down arrow
+  graphics.translate(80, 492);
+  graphics.rotate(Math.PI);
+  graphics.drawImage(inactiveArrowImage, 0, 0);
+  graphics.rotate(-Math.PI);
+  graphics.translate(-80, -492);
+
+  //Left Arrow
+  graphics.translate(120, 460);
+  graphics.rotate(.5*Math.PI);
+  graphics.drawImage(inactiveArrowImage, 0, 0);
+  graphics.rotate(-.5*Math.PI);
+  graphics.translate(-120, -460)
+
+  //Right arrow
+  graphics.translate(120, 492);
+  graphics.rotate(-.5*Math.PI);
+  graphics.drawImage(inactiveArrowImage, 0, 0);
+  graphics.rotate(.5*Math.PI);
+  graphics.translate(-120, -492)
 
   window.requestAnimationFrame(drawFunction);
 }
@@ -110,12 +142,15 @@ function startGame() {
 
 function initialize() {
   createjs.Sound.registerSound("audio/sounds/select.wav", selectionSoundID);
+  activeArrowImage = new Image();
+  inactiveArrowImage = new Image();
+  activeArrowImage.src = "images/ArrowActive.png";
+  inactiveArrowImage.src = "images/ArrowInactive.png";
 }
-
+//Start animation. Loading animation is first
+window.requestAnimationFrame(drawFunction);
 //Initialize the web application
 initialize();
-//Start animation
-window.requestAnimationFrame(drawFunction);
 //Assign keyListener
 document.addEventListener("keydown", menuKeyHandler, false);
 //Set This should be the last thing to happen

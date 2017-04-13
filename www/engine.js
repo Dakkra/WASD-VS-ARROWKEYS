@@ -88,7 +88,9 @@ function menuKeyHandler(event) {
 
 function startGame() {
   drawFunction = gameRenderer;
+  document.removeEventListener("keydown", inputFunction);
   inputFunction = gameKeyHandler;
+  document.addEventListener("keydown", inputFunction, false);
   createjs.Sound.play(selectionSoundID);
 }
 
@@ -104,6 +106,6 @@ window.requestAnimationFrame(drawFunction);
 //Initialize the web application
 initialize();
 //Assign keyListener
-document.addEventListener("keydown", menuKeyHandler, false);
+document.addEventListener("keydown", inputFunction, false);
 //Set This should be the last thing to happen
 ready = true;

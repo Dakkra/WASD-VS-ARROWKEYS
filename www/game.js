@@ -1,3 +1,5 @@
+//Declare variables for which keys are active
+
 //Stage for actual gameplay with users
 function gameRenderer() {
   //Clear graphics context

@@ -88,8 +88,8 @@ function menuKeyHandler(event) {
 function startGame() {
   drawFunction = gameRenderer;
   document.removeEventListener("keydown", menuKeyHandler);
-  document.addEventListener("keydown", gameKeyUpHandler, false);
-  document.addEventListener("keyup", gameKeyDownHandler, false);
+  document.addEventListener("keydown", gameKeyDownHandler, false);
+  document.addEventListener("keyup", gameKeyUpHandler, false);
   createjs.Sound.play(selectionSoundID);
 }
 

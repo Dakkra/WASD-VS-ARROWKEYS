@@ -44,7 +44,7 @@ function gameRenderer() {
   graphics.rotate(-Math.PI);
   graphics.translate(-80, -492);
 
-  //Left Arrow
+  //Right Arrow
   arrowImage = d ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 460);
   graphics.rotate(.5*Math.PI);
@@ -52,7 +52,7 @@ function gameRenderer() {
   graphics.rotate(-.5*Math.PI);
   graphics.translate(-120, -460)
 
-  //Right arrow
+  //Left arrow
   arrowImage = a ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 492);
   graphics.rotate(-.5*Math.PI);
@@ -75,16 +75,16 @@ function gameRenderer() {
   graphics.rotate(-Math.PI);
   graphics.translate(-80, -492);
 
-  //Left Arrow
-  arrowImage = left ? activeArrowImage : inactiveArrowImage;
+  //Right  Arrow
+  arrowImage = right ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 460);
   graphics.rotate(.5*Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-.5*Math.PI);
   graphics.translate(-120, -460)
 
-  //Right arrow
-  arrowImage = right ? activeArrowImage : inactiveArrowImage;
+  //Left arrow
+  arrowImage = left ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 492);
   graphics.rotate(-.5*Math.PI);
   graphics.drawImage(arrowImage, 0, 0);

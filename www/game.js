@@ -1,4 +1,12 @@
 //Declare variables for which keys are active
+var w = false;
+var a = false;
+var s = false;
+var d = false;
+var up = false;
+var down = false;
+var left = false;
+var right = false;
 
 //Stage for actual gameplay with users
 function gameRenderer() {
@@ -51,7 +59,15 @@ function gameRenderer() {
 }
 
 //Handle game input here
-function gameKeyHandler(event) {
+function gameKeyDownHandler(event) {
+  switch (event.keyCode) {
+    default: {
+      break;
+    }
+  }
+}
+
+function gameKeyUpHandler(event) {
   switch (event.keyCode) {
     default: {
       break;

@@ -1,7 +1,6 @@
 var canvas = document.getElementById('canvas');
 var graphics = canvas.getContext("2d");
 var drawFunction = loadingRenderer;
-var inputFunction = menuKeyHandler;
 var inactiveArrowImage;
 var activeArrowImage;
 var ready = false;
@@ -88,9 +87,9 @@ function menuKeyHandler(event) {
 
 function startGame() {
   drawFunction = gameRenderer;
-  document.removeEventListener("keydown", inputFunction);
-  inputFunction = gameKeyHandler;
-  document.addEventListener("keydown", inputFunction, false);
+  document.removeEventListener("keydown", menuKeyHandler);
+  document.addEventListener("keydown", gameKeyUpHandler, false);
+  document.addEventListener("keyup", gameKeyDownHandler, false);
   createjs.Sound.play(selectionSoundID);
 }
 
@@ -106,6 +105,6 @@ window.requestAnimationFrame(drawFunction);
 //Initialize the web application
 initialize();
 //Assign keyListener
-document.addEventListener("keydown", inputFunction, false);
+document.addEventListener("keydown", menuKeyHandler, false);
 //Set This should be the last thing to happen
 ready = true;

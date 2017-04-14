@@ -6,6 +6,7 @@ var activeArrowImage;
 var ready = false;
 //Assign soundIDs
 var selectionSoundID = "Select";
+var songSID = "Music";
 
 function loadingRenderer() {
   //Begin procedural composition
@@ -91,10 +92,13 @@ function startGame() {
   document.addEventListener("keydown", gameKeyDownHandler, false);
   document.addEventListener("keyup", gameKeyUpHandler, false);
   createjs.Sound.play(selectionSoundID);
+  initPlayStage();
+  createjs.Sound.play(songSID);  
 }
 
 function initialize() {
   createjs.Sound.registerSound("audio/sounds/select.wav", selectionSoundID);
+  createjs.Sound.registerSound("audio/music/demo.wav", songSID);
   activeArrowImage = new Image();
   inactiveArrowImage = new Image();
   activeArrowImage.src = "images/ArrowActive.png";

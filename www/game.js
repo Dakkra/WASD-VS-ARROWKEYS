@@ -8,6 +8,39 @@ var down = false;
 var left = false;
 var right = false;
 
+//Variables for music and timing
+//TODO make a song for the game
+var songSID = "Music";
+var beatCount = 0;
+var measureCount = 0;
+var beatsPerMeasure = 4;
+var countInMeasure = 0;
+var bpm = 128;
+var bps = bpm/60;
+//Milliseconds between beat counts
+var timerInterval = 1000/bps;
+var beatCounter;
+
+function initPlayStage() {
+  createjs.Sound.registerSound("audio/music/demo.wav", songSID);
+  createjs.Sound.play(songSID);
+  beatCounter = window.setInterval(countBeat, timerInterval);
+}
+
+function countBeat() {
+  if (countInMeasure == 4) {
+    countInMeasure = 0;
+  }
+  beatCount++;
+  countInMeasure++;  
+  //Beatcount can never == 0 as the above increase makes it ast least 1
+  if (beatCount % beatsPerMeasure == 0) {
+    measureCount++;
+    countInMeasure = 4;
+  }
+  console.log("Beat: " + beatCount + " Measure: " + measureCount + " Count: " + countInMeasure);
+}
+
 //Stage for actual gameplay with users
 function gameRenderer() {
   //Clear graphics context

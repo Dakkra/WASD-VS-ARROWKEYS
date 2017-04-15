@@ -11,7 +11,7 @@ var right = false;
 //Variables for music and timing
 //TODO make a song for the game
 var beatCount = 0;
-var measureCount = 0;
+var measureCount = 1;
 var beatsPerMeasure = 4;
 var countInMeasure = 0;
 var bpm = 128;
@@ -23,8 +23,8 @@ var beatTimer;
 function initPlayStage() {
   beatCount++;
   countInMeasure++;
-  console.log("Beat: " + beatCount + " Measure: " + measureCount + " Count: " + countInMeasure);
- beatTimer = window.setInterval(countBeat, timerInterval);
+  beatCounterDiv.innerHTML = measureCount + "::" + countInMeasure;
+  beatTimer = window.setInterval(countBeat, timerInterval);
   createjs.Sound.play(songSID);
 }
 
@@ -40,7 +40,7 @@ function countBeat() {
     measureCount++;
     countInMeasure = 4;
   }
-  console.log("Beat: " + beatCount + " Measure: " + measureCount + " Count: " + countInMeasure);
+  beatCounterDiv.innerHTML = measureCount + "::" + countInMeasure;
 }
 
 //Stage for actual gameplay with users

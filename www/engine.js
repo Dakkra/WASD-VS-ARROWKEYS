@@ -1,5 +1,6 @@
 var canvas = document.getElementById('canvas');
 var graphics = canvas.getContext("2d");
+var beatCounterDiv = document.getElementById('beatCounter');
 var drawFunction = loadingRenderer;
 var inactiveArrowImage;
 var activeArrowImage;

@@ -10,7 +10,6 @@ var right = false;
 
 //Variables for music and timing
 //TODO make a song for the game
-var songSID = "Music";
 var beatCount = 0;
 var measureCount = 0;
 var beatsPerMeasure = 4;
@@ -22,9 +21,11 @@ var timerInterval = 1000/bps;
 var beatCounter;
 
 function initPlayStage() {
-  createjs.Sound.registerSound("audio/music/demo.wav", songSID);
-  createjs.Sound.play(songSID);
+  beatCount++;
+  countInMeasure++;
+  console.log("Beat: " + beatCount + " Measure: " + measureCount + " Count: " + countInMeasure);
   beatCounter = window.setInterval(countBeat, timerInterval);
+  createjs.Sound.play(songSID);    
 }
 
 function countBeat() {

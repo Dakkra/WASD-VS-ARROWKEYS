@@ -93,7 +93,7 @@ function startGame() {
   document.addEventListener("keyup", gameKeyUpHandler, false);
   createjs.Sound.play(selectionSoundID);
   initPlayStage();
-  createjs.Sound.play(songSID);  
+  createjs.Sound.play(songSID);
 }
 
 function initialize() {

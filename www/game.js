@@ -32,9 +32,10 @@ function countBeat() {
   if (countInMeasure == 4) {
     countInMeasure = 0;
   }
+  
   beatCount++;
   countInMeasure++;  
-  //Beatcount can never == 0 as the above increase makes it ast least 1
+
   if (beatCount % beatsPerMeasure == 0) {
     measureCount++;
     countInMeasure = 4;

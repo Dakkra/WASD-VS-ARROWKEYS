@@ -18,13 +18,13 @@ var bpm = 128;
 var bps = bpm / 60;
 //Milliseconds between beat counts
 var timerInterval = 1000 / bps;
-var beatCounter;
+var beatTimer;
 
 function initPlayStage() {
   beatCount++;
   countInMeasure++;
   console.log("Beat: " + beatCount + " Measure: " + measureCount + " Count: " + countInMeasure);
-  beatCounter = window.setInterval(countBeat, timerInterval);
+ beatTimer = window.setInterval(countBeat, timerInterval);
   createjs.Sound.play(songSID);
 }
 

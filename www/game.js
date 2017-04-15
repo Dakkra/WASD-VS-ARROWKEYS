@@ -85,7 +85,7 @@ function gameRenderer() {
   graphics.rotate(.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-.5 * Math.PI);
-  graphics.translate(-120, -460)
+  graphics.translate(-120, -460);
 
   //Left arrow
   arrowImage = a ? activeArrowImage : inactiveArrowImage;
@@ -93,7 +93,7 @@ function gameRenderer() {
   graphics.rotate(-.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(.5 * Math.PI);
-  graphics.translate(-120, -492)
+  graphics.translate(-120, -492);
 
   //ARROW KEYS
   //Shift x by 250
@@ -116,7 +116,7 @@ function gameRenderer() {
   graphics.rotate(.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-.5 * Math.PI);
-  graphics.translate(-120, -460)
+  graphics.translate(-120, -460);
 
   //Left arrow
   arrowImage = left ? activeArrowImage : inactiveArrowImage;
@@ -124,7 +124,7 @@ function gameRenderer() {
   graphics.rotate(-.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(.5 * Math.PI);
-  graphics.translate(-120, -492)
+  graphics.translate(-120, -492);
 
   //Bring x back to 0
   graphics.translate(-250, 0);

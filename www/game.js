@@ -15,9 +15,9 @@ var measureCount = 0;
 var beatsPerMeasure = 4;
 var countInMeasure = 0;
 var bpm = 128;
-var bps = bpm/60;
+var bps = bpm / 60;
 //Milliseconds between beat counts
-var timerInterval = 1000/bps;
+var timerInterval = 1000 / bps;
 var beatCounter;
 
 function initPlayStage() {
@@ -25,16 +25,16 @@ function initPlayStage() {
   countInMeasure++;
   console.log("Beat: " + beatCount + " Measure: " + measureCount + " Count: " + countInMeasure);
   beatCounter = window.setInterval(countBeat, timerInterval);
-  createjs.Sound.play(songSID);    
+  createjs.Sound.play(songSID);
 }
 
 function countBeat() {
   if (countInMeasure == 4) {
     countInMeasure = 0;
   }
-  
+
   beatCount++;
-  countInMeasure++;  
+  countInMeasure++;
 
   if (beatCount % beatsPerMeasure == 0) {
     measureCount++;
@@ -82,17 +82,17 @@ function gameRenderer() {
   //Right Arrow
   arrowImage = d ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 460);
-  graphics.rotate(.5*Math.PI);
+  graphics.rotate(.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
-  graphics.rotate(-.5*Math.PI);
+  graphics.rotate(-.5 * Math.PI);
   graphics.translate(-120, -460)
 
   //Left arrow
   arrowImage = a ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 492);
-  graphics.rotate(-.5*Math.PI);
+  graphics.rotate(-.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
-  graphics.rotate(.5*Math.PI);
+  graphics.rotate(.5 * Math.PI);
   graphics.translate(-120, -492)
 
   //ARROW KEYS
@@ -113,17 +113,17 @@ function gameRenderer() {
   //Right  Arrow
   arrowImage = right ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 460);
-  graphics.rotate(.5*Math.PI);
+  graphics.rotate(.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
-  graphics.rotate(-.5*Math.PI);
+  graphics.rotate(-.5 * Math.PI);
   graphics.translate(-120, -460)
 
   //Left arrow
   arrowImage = left ? activeArrowImage : inactiveArrowImage;
   graphics.translate(120, 492);
-  graphics.rotate(-.5*Math.PI);
+  graphics.rotate(-.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
-  graphics.rotate(.5*Math.PI);
+  graphics.rotate(.5 * Math.PI);
   graphics.translate(-120, -492)
 
   //Bring x back to 0

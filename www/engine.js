@@ -52,7 +52,7 @@ function menuRenderer() {
   graphics.strokeStyle = "#888888";
   graphics.lineWidth = 1;
   graphics.beginPath();
-  var rad = 100 * (time.getMilliseconds()/1000);
+  var rad = 100 * (time.getMilliseconds() / 1000);
   graphics.arc(250, 250, rad, 0, (2 * Math.PI));
   graphics.stroke();
 

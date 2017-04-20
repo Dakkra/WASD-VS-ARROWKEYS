@@ -98,7 +98,7 @@ function startGame() {
   drawFunction = gameRenderer;
   //Remove old event handlers
   document.removeEventListener("keydown", menuKeyHandler);
-  document.onclick = null;
+  canvas.onclick = null;
   //Add new event handlers
   document.addEventListener("keydown", gameKeyDownHandler, false);
   document.addEventListener("keyup", gameKeyUpHandler, false);

@@ -85,15 +85,27 @@ function menuKeyHandler(event) {
       }
     }
   }
+  event.preventDefault();
+}
+
+//Mouse input for the menu
+function menuMouseHandler() {
+  startGame();
 }
 
 function startGame() {
+  //Change renderer
   drawFunction = gameRenderer;
+  //Remove old event handlers
   document.removeEventListener("keydown", menuKeyHandler);
+  document.onclick = null;
+  //Add new event handlers
   document.addEventListener("keydown", gameKeyDownHandler, false);
   document.addEventListener("keyup", gameKeyUpHandler, false);
+  //Play sound and start the game stage
   createjs.Sound.play(selectionSoundID);
   initPlayStage();
+  //Play the main song
   createjs.Sound.play(songSID);
 }
 
@@ -111,5 +123,7 @@ window.requestAnimationFrame(drawFunction);
 initialize();
 //Assign keyListener
 document.addEventListener("keydown", menuKeyHandler, false);
+//Assign mouseListener
+canvas.onclick = menuMouseHandler;
 //Set This should be the last thing to happen
 ready = true;

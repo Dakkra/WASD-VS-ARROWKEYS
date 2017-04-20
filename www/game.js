@@ -179,6 +179,7 @@ function gameKeyDownHandler(event) {
       break;
     }
   }
+  event.preventDefault();
 }
 
 function gameKeyUpHandler(event) {

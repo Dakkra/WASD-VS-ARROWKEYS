@@ -228,4 +228,5 @@ function gameKeyUpHandler(event) {
       break;
     }
   }
+  event.preventDefault();  
 }

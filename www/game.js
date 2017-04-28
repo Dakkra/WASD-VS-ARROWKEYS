@@ -48,16 +48,15 @@ function countBeat() {
   arrows.push({
     direction: ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)],
     position: 0,
-    consumed: false
   })
   //Updating the arrows' position
   arrows = arrows.map(function(arrow) {
     arrow.position += 37;
     return arrow;
   })
-  //Clearing off arrows when they reach the bottom line or are consumed
+  //Clearing off arrows when they reach the bottom line
   .filter(function(arrow) {
-    return arrow.position <= 425 && !arrow.consumed;
+    return arrow.position <= 425;
   })
 //End Sabrina's code
   if (beatCount % beatsPerMeasure == 0) {
@@ -167,15 +166,14 @@ function gameRenderer() {
 function gameKeyDownHandler(event) {
   //Creating variable to compare an arrow's position
   //to a key being pressed to see if they match
-  // var arrowMatch = arrows[arrows.length - 1];
-  var arrowMatch = arrows[0];  
+  var arrowMatch = arrows[arrows.length - 1];
   // console.log(wasdScore);
   console.log(arrowKeysScore);
   switch (event.keyCode) {
     //a
     case 65: {
       a = true;
-      if (arrowMatch.direction == "left" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "left") {
         wasdScore ++;
       }
       break;
@@ -183,7 +181,7 @@ function gameKeyDownHandler(event) {
     //w
     case 87: {
       w = true;
-      if (arrowMatch.direction == "up" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "up") {
         wasdScore ++;
       }
       break;
@@ -191,7 +189,7 @@ function gameKeyDownHandler(event) {
     //s
     case 83: {
       s = true;
-      if (arrowMatch.direction == "down" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "down") {
         wasdScore ++;
       }
       break;
@@ -199,7 +197,7 @@ function gameKeyDownHandler(event) {
     //d
     case 68: {
       d = true;
-      if (arrowMatch.direction == "right" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "right") {
         wasdScore ++;
       }
       break;
@@ -207,7 +205,7 @@ function gameKeyDownHandler(event) {
     //Left
     case 37: {
       left = true;
-      if (arrowMatch.direction == "left" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "left") {
         arrowKeysScore ++;
       }
       break;
@@ -215,7 +213,7 @@ function gameKeyDownHandler(event) {
     //up
     case 38: {
       up = true;
-      if (arrowMatch.direction == "up" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "up") {
         arrowKeysScore ++;
       }
       break;
@@ -223,7 +221,7 @@ function gameKeyDownHandler(event) {
     //down
     case 40: {
       down = true;
-      if (arrowMatch.direction == "down" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "down") {
         arrowKeysScore ++;
       }
       break;
@@ -231,7 +229,7 @@ function gameKeyDownHandler(event) {
     //Right
     case 39: {
       right = true;
-      if (arrowMatch.direction == "right" && !arrowMatch.consumed) {
+      if (arrowMatch.direction == "right") {
         arrowKeysScore ++;
       }
       break;
@@ -240,7 +238,6 @@ function gameKeyDownHandler(event) {
       break;
     }
   }
-  arrowMatch.consumed = true;  
   event.preventDefault();
 }
 

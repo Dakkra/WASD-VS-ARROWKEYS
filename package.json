@@ -1,0 +1,20 @@
+{
+  "name": "WASD-VS-ARROWKEYS",
+  "version": "1.0.0",
+  "description": "This is the APCSP project by Sabrina Lund and Chris Soderquist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server ./www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dakkra/WASD-VS-ARROWKEYS/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  }
+}

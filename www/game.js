@@ -20,6 +20,13 @@ var bps = bpm / 60;
 var timerInterval = 1000 / bps;
 var beatTimer;
 
+//Creating scores for each side
+var wasdScore = 0;
+var wasdDiv = document.getElementById("wasdScore");
+var arrowKeysScore = 0;
+var arrowKeysDiv = document.getElementById("arrowKeysScore");
+
+var arrows = [];
 function initPlayStage() {
   beatCount++;
   countInMeasure++;
@@ -36,6 +43,22 @@ function countBeat() {
   beatCount++;
   countInMeasure++;
 
+// Sabrina's code
+//Creating arrows at the top
+  arrows.push({
+    direction: ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)],
+    position: 0,
+  })
+  //Updating the arrows' position
+  arrows = arrows.map(function(arrow) {
+    arrow.position += 37;
+    return arrow;
+  })
+  //Clearing off arrows when they reach the bottom line
+  .filter(function(arrow) {
+    return arrow.position <= 425;
+  })
+//End Sabrina's code
   if (beatCount % beatsPerMeasure == 0) {
     measureCount++;
     countInMeasure = 4;
@@ -45,6 +68,8 @@ function countBeat() {
 
 //Stage for actual gameplay with users
 function gameRenderer() {
+  wasdDiv.textContent = wasdScore;
+  arrowKeysDiv.textContent = arrowKeysScore;
   //Clear graphics context
   graphics.clearRect(0, 0, 500, 500);
   //Draw background
@@ -69,110 +94,144 @@ function gameRenderer() {
   //WASD
   //Normal up arrow
   arrowImage = w ? activeArrowImage : inactiveArrowImage;
-  graphics.drawImage(arrowImage, 10, 460);
+  graphics.drawImage(arrowImage, 135, 460);
 
   //Upside down arrow
   arrowImage = s ? activeArrowImage : inactiveArrowImage;
-  graphics.translate(80, 492);
+  graphics.translate(117, 492);
   graphics.rotate(Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-Math.PI);
-  graphics.translate(-80, -492);
+  graphics.translate(-117, -492);
 
   //Right Arrow
   arrowImage = d ? activeArrowImage : inactiveArrowImage;
-  graphics.translate(120, 460);
+  graphics.translate(220, 460);
   graphics.rotate(.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-.5 * Math.PI);
-  graphics.translate(-120, -460);
+  graphics.translate(-220, -460);
 
   //Left arrow
   arrowImage = a ? activeArrowImage : inactiveArrowImage;
-  graphics.translate(120, 492);
+  graphics.translate(40, 492);
   graphics.rotate(-.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(.5 * Math.PI);
-  graphics.translate(-120, -492);
+  graphics.translate(-40, -492);
 
   //ARROW KEYS
   //Shift x by 250
   graphics.translate(250, 0);
   //Normal up arrow
   arrowImage = up ? activeArrowImage : inactiveArrowImage;
-  graphics.drawImage(arrowImage, 10, 460);
+  graphics.drawImage(arrowImage, 135, 460);
 
   //Upside down arrow
   arrowImage = down ? activeArrowImage : inactiveArrowImage;
-  graphics.translate(80, 492);
+  graphics.translate(117, 492);
   graphics.rotate(Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-Math.PI);
-  graphics.translate(-80, -492);
+  graphics.translate(-117, -492);
 
   //Right  Arrow
   arrowImage = right ? activeArrowImage : inactiveArrowImage;
-  graphics.translate(120, 460);
+  graphics.translate(220, 460);
   graphics.rotate(.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(-.5 * Math.PI);
-  graphics.translate(-120, -460);
+  graphics.translate(-220, -460);
 
   //Left arrow
   arrowImage = left ? activeArrowImage : inactiveArrowImage;
-  graphics.translate(120, 492);
+  graphics.translate(40, 492);
   graphics.rotate(-.5 * Math.PI);
   graphics.drawImage(arrowImage, 0, 0);
   graphics.rotate(.5 * Math.PI);
-  graphics.translate(-120, -492);
+  graphics.translate(-40, -492);
 
   //Bring x back to 0
   graphics.translate(-250, 0);
+//Drawing arrows given the direction, color, track, and position
+  arrows.forEach(function(arrow) {
+    drawArrow(arrow.direction, "red", 0, arrow.position);
+    drawArrow(arrow.direction, "blue", 250, arrow.position);
+  })
 
   window.requestAnimationFrame(drawFunction);
 }
 
 //Handle game input here
 function gameKeyDownHandler(event) {
+  //Creating variable to compare an arrow's position
+  //to a key being pressed to see if they match
+  var arrowMatch = arrows[arrows.length - 1];
+  // console.log(wasdScore);
+  console.log(arrowKeysScore);
   switch (event.keyCode) {
-    //w
-    case 87: {
-      w = true;
-      break;
-    }
     //a
     case 65: {
       a = true;
+      if (arrowMatch.direction == "left") {
+        wasdScore ++;
+      }
+      break;
+    }
+    //w
+    case 87: {
+      w = true;
+      if (arrowMatch.direction == "up") {
+        wasdScore ++;
+      }
       break;
     }
     //s
     case 83: {
       s = true;
+      if (arrowMatch.direction == "down") {
+        wasdScore ++;
+      }
       break;
     }
     //d
     case 68: {
       d = true;
-      break;
-    }
-    //up
-    case 38: {
-      up = true;
-      break;
-    }
-    //down
-    case 40: {
-      down = true;
+      if (arrowMatch.direction == "right") {
+        wasdScore ++;
+      }
       break;
     }
     //Left
     case 37: {
       left = true;
+      if (arrowMatch.direction == "left") {
+        arrowKeysScore ++;
+      }
+      break;
+    }
+    //up
+    case 38: {
+      up = true;
+      if (arrowMatch.direction == "up") {
+        arrowKeysScore ++;
+      }
+      break;
+    }
+    //down
+    case 40: {
+      down = true;
+      if (arrowMatch.direction == "down") {
+        arrowKeysScore ++;
+      }
       break;
     }
     //Right
     case 39: {
       right = true;
+      if (arrowMatch.direction == "right") {
+        arrowKeysScore ++;
+      }
       break;
     }
     default: {
@@ -228,48 +287,47 @@ function gameKeyUpHandler(event) {
       break;
     }
   }
-  event.preventDefault();  
+  event.preventDefault();
 }
 
 //Sabrina's code below
+//Accepting an arrow's direction, color, track, and position
 function drawArrow(dir, color, x, y) {
   graphics.strokeStyle = color;
   graphics.lineWidth = 2;
   graphics.beginPath();
   switch(dir) {
     case "left":
-      graphics.moveTo(x + 40, y + 10);
-      graphics.lineTo(x + 60, y + 10);
-      graphics.moveTo(x + 48, y + 2);
-      graphics.lineTo(x + 40, y + 10);
-      graphics.lineTo(x + 48, y + 18);
-      break;
-    case "up":
-      graphics.moveTo(x + 100, y);
-      graphics.lineTo(x + 100, y + 20);
-      graphics.moveTo(x + 92, y + 8);
-      graphics.lineTo(x + 100, y);
-      graphics.lineTo(x + 108, y + 8);
-      break;
-    case "right":
-      graphics.moveTo(x + 140, y + 10);
-      graphics.lineTo(x + 160, y + 10);
-      graphics.moveTo(x + 152, y + 2);
-      graphics.lineTo(x + 160, y + 10);
-      graphics.lineTo(x + 152, y + 18);
+      graphics.moveTo(x + 40, y + 16);
+      graphics.lineTo(x + 72, y + 16);
+      graphics.moveTo(x + 56, y);
+      graphics.lineTo(x + 40, y + 16);
+      graphics.lineTo(x + 56, y + 32);
       break;
     case "down":
-      graphics.moveTo(x + 200, y);
-      graphics.lineTo(x + 200, y + 20);
-      graphics.moveTo(x + 192, y + 12);
-      graphics.lineTo(x + 200, y + 20);
-      graphics.lineTo(x + 208, y + 12);
+      graphics.moveTo(x + 100, y);
+      graphics.lineTo(x + 100, y + 32);
+      graphics.moveTo(x + 84, y + 16);
+      graphics.lineTo(x + 100, y + 32);
+      graphics.lineTo(x + 116, y + 16);
+      break;
+    case "up":
+      graphics.moveTo(x + 150, y);
+      graphics.lineTo(x + 150, y + 32);
+      graphics.moveTo(x + 134, y + 16);
+      graphics.lineTo(x + 150, y);
+      graphics.lineTo(x + 166, y + 16);
+      break;
+    case "right":
+      graphics.moveTo(x + 190, y + 16);
+      graphics.lineTo(x + 222, y + 16);
+      graphics.moveTo(x + 206, y);
+      graphics.lineTo(x + 222, y + 16);
+      graphics.lineTo(x + 206, y + 32);
       break;
   }
   graphics.stroke();
 }
-
-// var arrows = []
 
 function arrowOnCanvas() {
   graphics.clearRect(0, 0, 500, 500);
@@ -277,43 +335,13 @@ function arrowOnCanvas() {
   graphics.fillStyle = "#000000";
   graphics.fillRect(0, 0, 500, 500);
   //Arrows for left track
-  drawArrow("up", "red", 0, 100);
-  drawArrow("down", "red", 0, 100);
   drawArrow("left", "red", 0, 100);
+  drawArrow("down", "red", 0, 100);
+  drawArrow("up", "red", 0, 100);
   drawArrow("right", "red", 0, 100);
   //Arrows for right track
-  drawArrow("up", "steelblue", 250, 100);
-  drawArrow("down", "steelblue", 250, 100);
   drawArrow("left", "steelblue", 250, 100);
+  drawArrow("down", "steelblue", 250, 100);
+  drawArrow("up", "steelblue", 250, 100);
   drawArrow("right", "steelblue", 250, 100);
-  // arrows.forEach(function(arrow) {
-  //   drawArrow(arrow.direction, arrow.color, arrow.track, arrow.position)
-  // })
-  // window.requestAnimationFrame(arrowOnCanvas)
 }
-
-// window.requestAnimationFrame(arrowOnCanvas);
-
-// function addArrow() {
-//   arrows.push({
-//     direction: ['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)],
-//     color: ['red', 'yellow', 'green', 'blue'][Math.floor(Math.random() * 4)],
-//     track: [0, 250][Math.floor(Math.random() * 2)],
-//     // position: Math.floor(Math.random() * 500),
-//     position: 0,
-//   })
-// }
-
-// window.setInterval(function() {
-//   addArrow()
-// }, 1000)
-//
-// window.setInterval(function() {
-//   arrows = arrows.map(function(arrow) {
-//     arrow.position += 2
-//     return arrow
-//   })
-//   .filter(function(arrow) {
-//     return arrow.position < 500
-//   })
-// }, 15)
